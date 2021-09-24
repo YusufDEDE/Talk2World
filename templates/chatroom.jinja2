@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'includes/_head.jinja2' %}
+    <!-- socketio -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
+            integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA=="
+            crossorigin="anonymous"></script>
+    <!-- custom css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chatroom.css') }}">
+
+
+    <script type="text/javascript">
+        var myRoomID = "{{room_id}}";
+        var myName = "{{display_name}}";
+        var audioMuted = "{{mute_audio}}" == "1";
+        var videoMuted = "{{mute_video}}" == "1";
+        console.log(">> {{mute_audio}}, {{mute_video}}", audioMuted, videoMuted);
+    </script>
+    <script src="{{ url_for('static', filename='js/chatroom_ui.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chatroom_networking.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/live-captioning.js') }}"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat [{{ room_id }}]</title>
+</head>
+<body>
+
+<div class="heading mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="text-left">
+            <h1 class="display-4">Talk2World</h1>
+            <h3>Room: <span class="heading-mark">{{ room_id }}</span></h3>
+        </div>
+        <div class="room-info text-right">
+            <h5>You have joined as <span class="heading-mark">{{ display_name }}</span></h5>
+            <div>Ask your friends to join using the room id: <span class="heading-mark">{{ room_id }}</span></div>
+            <div id="room_link"></div>
+        </div>
+    </div>
+</div>
+
+<h1 id="result"></h1>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-6">
+            <div id="video_grid" class="video-grid"></div>
+        </div>
+
+        <div class="col-6">
+            <div id="div_local_vid" class="d-flex">
+                <div class="vid-wrapper">
+                    <video id="local_vid" autoplay muted></video>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="footer">
+    <div id="control_box" class="">
+        <div class="d-flex justify-content-around bd-highlight  button-box">
+            <div class="p-2 bd-highlight">
+                <button id="bttn_mute" class="btn btn-lg btn-outline-secondary rounded-circle">
+                    <span id="mute_icon" class="material-icons pt-2">
+                        mic
+                    </span>
+                </button>
+            </div>
+            <div class="p-2 bd-highlight">
+                <button id="bttn_vid_mute" class="btn btn-lg btn-outline-secondary rounded-circle">
+                    <span id="vid_mute_icon" class="material-icons pt-2">
+                        videocam
+                    </span>
+                </button>
+            </div>
+            <div class="p-2 bd-highlight">
+                <button id="call_end" class="btn btn-lg btn-danger rounded-circle">
+                    <span class="material-icons pt-2">
+                        call_end
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

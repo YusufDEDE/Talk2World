@@ -1,0 +1,64 @@
+{% extends 'base.jinja2' %}
+
+{% block extra_style %}
+    <script src="{{ url_for('static', filename='js/chatroom_checkpoint.js') }}"></script>
+{% endblock %}
+
+{% block content_body %}
+    <div class="heading mb-4">
+        <h1 class="display-4">Talk2World</h1>
+        <h4>You are about to join room: <span class="heading-mark">{{ room_id }}</span></h4>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-6 mb-5 d-flex flex-column justify-content-center">
+                <div class="p-3">
+                    <h4>What should others see you as?</h4>
+                    <p>
+                        Enter a Name that your friends will be able to recognize you with <br>
+                        This name will be displayed to others!
+                    </p>
+                    <form method="POST" onsubmit="return validate()">
+                        <div class="input-group mb-3">
+                            <input type="text" name="display_name" id="display_name" class="form-control"
+                                   placeholder="Display Name" autofocus required>
+                            <div class="input-group-append">
+                                <input type="submit" value="Join" class="btn btn-primary">
+                            </div>
+                        </div>
+                        <input type="hidden" value="0" name="mute_audio" id="mute_audio_inp">
+                        <input type="hidden" value="0" name="mute_video" id="mute_video_inp">
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <div id="permission_alert" class="alert alert-danger" role="alert"
+                     style="display: none; background-color: rgb(255, 130, 130); color: rgb(153, 32, 32);">
+                    <strong>Please allow camera and mic permissions!</strong>
+                </div>
+                <div class="shadow p-0">
+                    <div class="vid-wrapper" style="width: 100%; background-color: rgb(20,20,20);">
+                        <video id="local_vid" autoplay muted style="width: 100%"></video>
+                    </div>
+                    <div class="p-3 w-100 bg-light text-center">
+                        <button id="bttn_mute" class="btn btn-lg btn-outline-secondary rounded-circle mx-3">
+                            <span id="mute_icon" class="material-icons pt-2">
+                                mic
+                            </span>
+                        </button>
+                        <button id="bttn_vid_mute" class="btn btn-lg btn-outline-secondary rounded-circle mx-3">
+                            <span id="vid_mute_icon" class="material-icons pt-2">
+                                videocam
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_script %}
+    <script src="{{ url_for('static', filename='js/chatroom_checkpoint.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.jinja2' %}
+
+{% block extra_style %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat</title>
+{% endblock %}
+
+{% block content_body %}
+    <div class="heading mb-4">
+        <h1 class="display-4">Talk2World</h1>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <div class="p-3">
+                    <h4>Welcome to video chat!</h4>
+                    <p>
+                        Enter a custom room name, and click join! <br>
+                        Share the room name with your friends, so that they can join too!
+                    </p>
+
+                    <form id="room_form" method="POST" class="form shadow">
+                        <div class="input-group mb-3">
+                            <input type="text" name="room_id" id="room_id" class="form-control"
+                                   placeholder="Custom Room Name"
+                                   autofocus
+                                   required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                            <div class="input-group-append">
+                                <input type="submit" value="Join" class="btn btn-primary">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="col-6">
+                <img src="{{ url_for('static', filename='img/meeting-svgrepo-com.svg') }}" class="w-100"/>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

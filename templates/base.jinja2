@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'includes/_head.jinja2' %}
+    {% block extra_style %}{% endblock %}
+</head>
+<body>
+    {% block content_body %}{% endblock %}
+    {% include 'includes/_scripts.jinja2' %}
+    {% block extra_script %}{% endblock %}
+</body>
+</html>

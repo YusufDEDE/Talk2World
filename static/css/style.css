@@ -1,0 +1,16 @@
+body{
+    background-color: rgb(220, 217, 217);
+}
+.heading
+{
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+    background-color: rgb(70, 2, 148);
+    color: rgb(246, 227, 201);
+}
+.heading-mark{
+    color: rgb(255, 244, 230);
+    font-weight: bold;
+    padding: 3px;
+;}
